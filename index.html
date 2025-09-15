@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wholesale Solutions</title>
+  <meta name="description" content="Simple wholesale solutions landing page." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Your web bot styles -->
+  <link rel="stylesheet" type="text/css" href="web-sdk/wbe-iframes.css">
+
+  <style>
+    :root {
+      --bg: #0a0f1f;
+      --bg-soft: #0f162e;
+      --card: #101a34;
+      --card-2: #0c1530;
+      --text: #eef2ff;
+      --muted: #a5b4fc;
+      --brand: #7c3aed; /* violet */
+      --brand-2: #22d3ee; /* cyan */
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(124, 58, 237, .25), rgba(34, 211, 238, 0)) ,
+                  radial-gradient(900px 500px at -10% 20%, rgba(34, 211, 238, .25), rgba(124,58,237,0)) ,
+                  var(--bg);
+      min-height: 100dvh;
+    }
+
+    /* Layout */
+    .container { width: min(1200px, 92vw); margin: 0 auto; }
+    header { position: sticky; top: 0; backdrop-filter: blur(8px); background: rgba(10,15,31,.55); border-bottom: 1px solid var(--border); z-index: 50; }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing:.2px; }
+    .brand .logo { width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
+    .nav a { color: var(--muted); text-decoration: none; font-weight: 600; margin-left: 18px; }
+    .nav a:hover { color: white; }
+
+    /* Hero */
+    .hero { padding: clamp(48px, 6vw, 96px) 0; position: relative; }
+    .hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: center; }
+    .tag { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); border-radius: 999px; color: var(--muted); font-weight:600; font-size: 12px; }
+    .h1 { font-size: clamp(28px, 5vw, 54px); line-height: 1.05; margin: 10px 0 14px; font-weight: 800; }
+    .lead { color: #c7d2fe; font-size: clamp(14px, 2.2vw, 18px); max-width: 60ch; }
+    .cta { display:flex; gap:12px; margin-top: 22px; }
+    .btn { padding: 12px 18px; border-radius: 12px; border:1px solid var(--border); background: linear-gradient(135deg, rgba(124,58,237,.35), rgba(34,211,238,.15)); color: white; font-weight: 700; text-decoration: none; }
+    .btn.secondary { background: transparent; color: var(--muted); }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+
+    .hero-card { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+    .metrics { display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px; }
+    .metric { background: var(--card); border:1px solid var(--border); border-radius: 14px; padding: 16px; text-align:center; }
+    .metric h3 { margin:0; font-size: 28px; }
+    .metric p { margin:8px 0 0; color: var(--muted); font-size: 13px; }
+
+    /* Sections */
+    section { padding: 56px 0; }
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; transition: transform .2s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .cta-band { background: linear-gradient(90deg, rgba(124,58,237,.25), rgba(34,211,238,.25)); border:1px solid var(--border); border-radius: var(--radius); padding: 24px; display:flex; justify-content: space-between; align-items: center; gap: 16px; }
+
+    /* Footer */
+    footer { border-top:1px solid var(--border); padding: 24px 0 80px; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 900px) { .hero-inner{ grid-template-columns: 1fr; } .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 720px) { .grid{ grid-template-columns: 1fr; } }
+
+    /* —— Floating Bot (bottom-right) —— */
+    /* The external CSS you linked can handle base styles; these additions position it. */
+    /* #wbe-sdw-bot { position: fixed; bottom: 20px; right: 20px; width: 360px; height: 520px; border: none; border-radius: 16px; box-shadow: var(--shadow); z-index: 9999; background: white; } */
+
+    /* Optional: a tiny toggle to show/hide the iframe
+    .bot-toggle { position: fixed; right: 24px; bottom: 24px; z-index: 10000; border: 1px solid var(--border); background: var(--card); color: white; border-radius: 999px; padding: 10px 14px; font-weight: 700; display: none; } */
+
+    /* Auto-hide the bot on very small screens to avoid covering content */
+    @media (max-width: 480px) {
+      #wbe-sdw-bot { display: none; }
+      .bot-toggle { display: inline-flex; align-items: center; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+    <!-- The floating web bot iframe (bottom-right). Replace the src with your own if needed) -->
+  <iframe id="wbe-sdw-bot" title="Assistant" src="web-sdk/wbe-sdw-bot.html"></iframe>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Wholesale</span>
+      </div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="tag">Carrier & Enterprise • GCC</span>
+          <h1 class="h1">Scalable Wholesale Connectivity<br/>for Modern Networks</h1>
+          <p class="lead">Launch and expand with IP Transit, International Voice, and Data solutions designed for reliability and speed—backed by a high‑capacity network and 24/7 support.</p>
+          <div class="cta">
+            <button class="btn" id="resetSession">Reset BOT Session</button>
+            <a class="btn secondary" href="#services">Explore services</a>
+          </div>
+
+          <div class="metrics">
+            <div class="metric"><h3>99.99%</h3><p>Network uptime</p></div>
+            <div class="metric"><h3>70+</h3><p>Global PoPs</p></div>
+            <div class="metric"><h3>24/7</h3><p>NOC support</p></div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1496096265110-f83ad7f96608?q=80&w=1920&auto=format&fit=crop" alt="Fiber and data center" style="width:100%; height: 260px; object-fit: cover; border-radius: 12px; border:1px solid var(--border);" />
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap: 12px; margin-top: 12px;">
+            <div class="card" style="padding:14px;">
+              <h3>IP Transit</h3>
+              <p>Carrier‑grade global routing and resilient peering.</p>
+            </div>
+            <div class="card" style="padding:14px;">
+              <h3>International Voice</h3>
+              <p>High‑quality voice termination with analytics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 style="margin:0 0 16px; font-size: 28px;">Services</h2>
+        <p style="margin:0 0 24px; color: var(--muted); max-width:70ch;">Choose from a portfolio of wholesale services to power your business across the region and beyond.</p>
+        <div class="grid">
+          <article class="card">
+            <h3>IP Transit</h3>
+            <p>Tier‑1 capacity, fine‑grained routing policies, and robust DDoS options.</p>
+          </article>
+          <article class="card">
+            <h3>Data & MPLS</h3>
+            <p>Low‑latency L2/L3 connectivity with QoS for mission‑critical traffic.</p>
+          </article>
+          <article class="card">
+            <h3>International Voice</h3>
+            <p>Competitive A‑Z termination, CLI guarantee, fraud monitoring.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h3 style="margin:0;">Looking for custom solutions?</h3>
+            <p style="margin:4px 0 0; color: var(--text); opacity:.85;">Bundle services with SLAs that match your scale and roadmap.</p>
+          </div>
+          <a class="btn" href="#contact">Talk to sales</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 style="margin:0 0 16px; font-size: 28px;">Contact sales</h2>
+        <div class="card" style="display:grid; gap: 12px;">
+          <label style="display:grid; gap:6px;">
+            <span>Name</span>
+            <input type="text" placeholder="Jane Doe" style="padding:12px; border-radius:12px; border:1px solid var(--border); background: var(--bg-soft); color:var(--text);" />
+          </label>
+          <label style="display:grid; gap:6px;">
+            <span>Company</span>
+            <input type="text" placeholder="ACME, Inc." style="padding:12px; border-radius:12px; border:1px solid var(--border); background: var(--bg-soft); color:var(--text);" />
+          </label>
+          <label style="display:grid; gap:6px;">
+            <span>Work Email</span>
+            <input type="email" placeholder="name@company.com" style="padding:12px; border-radius:12px; border:1px solid var(--border); background: var(--bg-soft); color:var(--text);" />
+          </label>
+          <button class="btn" style="width:max-content;">Request callback</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+      <small>© 2025 Wholesale Co. All rights reserved.</small>
+      <div style="display:flex; gap:16px;">
+        <a class="nav-link" href="#">Privacy</a>
+        <a class="nav-link" href="#">Terms</a>
+        <a class="nav-link" href="#">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Optional: mobile toggle to open the bot iframe when hidden on very small devices
+  <button class="bot-toggle" id="botToggle" aria-controls="wbe-sdw-bot" aria-expanded="false">Chat</button> -->
+
+  <script>
+    let sdwApi;
+    window.onload = () => {
+      const iframe = document.getElementById('wbe-sdw-bot');
+      if (iframe && iframe.contentWindow) {
+        console.log("Iframe loaded in service...");
+
+        // Wait for the API to start
+        iframe.contentWindow.SdwApi.then((Api) => {
+          // Initial delay to ensure connection is established
+          setTimeout(() => {
+            // console.log("Connection status:", this.sdwApi.isWebChatConnected());
+          }, 100);
+          if (Api) {
+            this.sdwApi = new Api();
+            // Insert user details
+            // this.sdwApi.overrideStartPattern("",{
+            //   "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkMyNjlBOTAyQTI1NjUyNzZEODQwNkNBMkYzREQwRDVFIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE3NTUwOTUwNDEsImV4cCI6MTc1NTA5NTk0MSwiaXNzIjoiaHR0cHM6Ly9tb2xpbXVpZHMuc2ltYWguY29tLyIsImNsaWVudF9pZCI6ImIyY0NsaWVudCIsInN1YiI6IjEwNjY5IiwiYXV0aF90aW1lIjoxNzU1MDk1MDQxLCJpZHAiOiJsb2NhbCIsImxkdCI6IjA4MTMyMDI1MTI1NnwxMyIsInVzZXJuYW1lIjoiMTAwMDAwMTAyMiIsInRmZSI6IkZhbHNlIiwic3lzdGVtdHlwZSI6IjEiLCJqdGkiOiJCN0NCOTFBODVBMzRDQ0RDNjI3MjZDODU4QTk4MDM4MSIsImlhdCI6MTc1NTA5NTA0MSwic2NvcGUiOlsiYWxlIiwiYXBwIiwiYmNmZiIsImNiYyIsImNlciIsImRpcyIsImVucSIsImZpbiIsImtodWIiLCJuYXIiLCJzYWNlIiwidWFtIiwib2ZmbGluZV9hY2Nlc3MiXSwiYW1yIjpbIjEwNjY5LCAxMDAwMDAxMDIyIl19.NBFY_bgJzhQqycLIj0y3ZGyIyBrIwOdjPP3hnlY2xa__MGg9BdKSzCWzlV4Wld_ahGYI0vPBO3bCtQUW3jHHK6CvJMkDx6b91ukr5nfyKvmUGo34fSzKABMEVG1KBQl7EM1E3gKAtonT4ckvxZDd3mYp_tXaqJz6i1UFlF69pkxASPAom9eb5lblJ1mAs6t5-k4QFNq6kQvFbjUNyMVpKsu1HLBsWGu4V8tgqIT-euSIG7XILJjiTL3EAXNUol71FaNdVOxkhbu96VKdYmq_cwuy6U3NrlF1coixdVdiIGW5iJmcCRD5tEOuDl_GUOwKW2pKa01c1PAL--uR6jCFFg",
+            //   "userEmail": "test@gmail.com",
+            //   "refreshToken": ""
+            // });
+            console.log("Token was updated");
+            console.log("sdwApi.getUserId() Response is: " + this.sdwApi.getUserId());
+          }
+        }).catch((error) => {
+          console.error("Failed to initialize API:", error);
+          this.sdwApi = null;
+        });
+      }
+    }
+
+    const resetSession = document.getElementById('resetSession')
+    if(resetSession) {
+      resetSession.addEventListener('click', () => {
+        console.log('Attempt to Reset Session\nIsWebChatConnected=' + this.sdwApi.isWebChatConnected())
+        if (this.sdwApi.isWebChatConnected()) {
+          this.sdwApi.resetSession()
+        }
+      })
+    }
+    // Toggle for very small screens (<=480px)
+    const toggle = document.getElementById('botToggle');
+    const bot = document.getElementById('wbe-sdw-bot');
+    if (toggle && bot) {
+      toggle.addEventListener('click', () => {
+        const isHidden = getComputedStyle(bot).display === 'none';
+        bot.style.display = isHidden ? 'block' : 'none';
+        toggle.setAttribute('aria-expanded', String(isHidden));
+      });
+    }
+  </script>
+</body>
+</html>
