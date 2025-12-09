@@ -252,6 +252,16 @@
         console.log('Attempt to Reset Session\nIsWebChatConnected=' + this.sdwApi.isWebChatConnected())
         if (this.sdwApi.isWebChatConnected()) {
           this.sdwApi.resetSession()
+          if (Api) {
+            this.sdwApi = new Api();
+            // Insert user details
+            this.sdwApi.overrideStartPattern("SE.INIT_WEB",{
+              "xStcToken": "ss",
+              "accessToken": "xx"
+            });
+            console.log("Token was updated");
+            console.log("sdwApi.getUserId() Response is: " + this.sdwApi.getUserId());
+          }
         }
       })
     }
