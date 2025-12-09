@@ -1,7 +1,7 @@
 {
-    "serverUrl": "https://witlab-bots.wit-software.com/gateway/v1",
-    "botToken": "4b7c42d2-ab49-4169-a29a-4b649c281ec2",
-    "botName": "gx1jkPxVTciKaEuRHu0U7Sw",
+    "serverUrl": "https://botgateway.stc.com.sa/gateway/v1",
+    "botToken": "3c8cab8e-9558-4b9b-bb9e-20fe7102cd22",
+    "botName": "rThgLr3NTtSwUBGQquJEe2Q",
     "channelType": "webchat",
     "maxHistoryDays": 10,
     "launcherIconUrl": "",
