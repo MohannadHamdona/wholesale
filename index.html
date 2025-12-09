@@ -232,11 +232,10 @@
           if (Api) {
             this.sdwApi = new Api();
             // Insert user details
-            // this.sdwApi.overrideStartPattern("",{
-            //   "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkMyNjlBOTAyQTI1NjUyNzZEODQwNkNBMkYzREQwRDVFIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE3NTUwOTUwNDEsImV4cCI6MTc1NTA5NTk0MSwiaXNzIjoiaHR0cHM6Ly9tb2xpbXVpZHMuc2ltYWguY29tLyIsImNsaWVudF9pZCI6ImIyY0NsaWVudCIsInN1YiI6IjEwNjY5IiwiYXV0aF90aW1lIjoxNzU1MDk1MDQxLCJpZHAiOiJsb2NhbCIsImxkdCI6IjA4MTMyMDI1MTI1NnwxMyIsInVzZXJuYW1lIjoiMTAwMDAwMTAyMiIsInRmZSI6IkZhbHNlIiwic3lzdGVtdHlwZSI6IjEiLCJqdGkiOiJCN0NCOTFBODVBMzRDQ0RDNjI3MjZDODU4QTk4MDM4MSIsImlhdCI6MTc1NTA5NTA0MSwic2NvcGUiOlsiYWxlIiwiYXBwIiwiYmNmZiIsImNiYyIsImNlciIsImRpcyIsImVucSIsImZpbiIsImtodWIiLCJuYXIiLCJzYWNlIiwidWFtIiwib2ZmbGluZV9hY2Nlc3MiXSwiYW1yIjpbIjEwNjY5LCAxMDAwMDAxMDIyIl19.NBFY_bgJzhQqycLIj0y3ZGyIyBrIwOdjPP3hnlY2xa__MGg9BdKSzCWzlV4Wld_ahGYI0vPBO3bCtQUW3jHHK6CvJMkDx6b91ukr5nfyKvmUGo34fSzKABMEVG1KBQl7EM1E3gKAtonT4ckvxZDd3mYp_tXaqJz6i1UFlF69pkxASPAom9eb5lblJ1mAs6t5-k4QFNq6kQvFbjUNyMVpKsu1HLBsWGu4V8tgqIT-euSIG7XILJjiTL3EAXNUol71FaNdVOxkhbu96VKdYmq_cwuy6U3NrlF1coixdVdiIGW5iJmcCRD5tEOuDl_GUOwKW2pKa01c1PAL--uR6jCFFg",
-            //   "userEmail": "test@gmail.com",
-            //   "refreshToken": ""
-            // });
+            this.sdwApi.overrideStartPattern("",{
+              "X-STC-API-JWT": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkMyNjlBOTAyQTI1NjUyNzZEODQwNkNBMkYzREQwRDVFIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE3NTUwOTUwNDEsImV4cCI6MTc1NTA5NTk0MSwiaXNzIjoiaHR0cHM6Ly9tb2xpbXVpZHMuc2ltYWguY29tLyIsImNsaWVudF9pZCI6ImIyY0NsaWVudCIsInN1YiI6IjEwNjY5IiwiYXV0aF90aW1lIjoxNzU1MDk1MDQxLCJpZHAiOiJsb2NhbCIsImxkdCI6IjA4MTMyMDI1MTI1NnwxMyIsInVzZXJuYW1lIjoiMTAwMDAwMTAyMiIsInRmZSI6IkZhbHNlIiwic3lzdGVtdHlwZSI6IjEiLCJqdGkiOiJCN0NCOTFBODVBMzRDQ0RDNjI3MjZDODU4QTk4MDM4MSIsImlhdCI6MTc1NTA5NTA0MSwic2NvcGUiOlsiYWxlIiwiYXBwIiwiYmNmZiIsImNiYyIsImNlciIsImRpcyIsImVucSIsImZpbiIsImtodWIiLCJuYXIiLCJzYWNlIiwidWFtIiwib2ZmbGluZV9hY2Nlc3MiXSwiYW1yIjpbIjEwNjY5LCAxMDAwMDAxMDIyIl19.NBFY_bgJzhQqycLIj0y3ZGyIyBrIwOdjPP3hnlY2xa__MGg9BdKSzCWzlV4Wld_ahGYI0vPBO3bCtQUW3jHHK6CvJMkDx6b91ukr5nfyKvmUGo34fSzKABMEVG1KBQl7EM1E3gKAtonT4ckvxZDd3mYp_tXaqJz6i1UFlF69pkxASPAom9eb5lblJ1mAs6t5-k4QFNq6kQvFbjUNyMVpKsu1HLBsWGu4V8tgqIT-euSIG7XILJjiTL3EAXNUol71FaNdVOxkhbu96VKdYmq_cwuy6U3NrlF1coixdVdiIGW5iJmcCRD5tEOuDl_GUOwKW2pKa01c1PAL--uR6jCFFg",
+              "accessToken": "xx"
+            });
             console.log("Token was updated");
             console.log("sdwApi.getUserId() Response is: " + this.sdwApi.getUserId());
           }
