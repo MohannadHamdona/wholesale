@@ -250,34 +250,59 @@
     if(resetSession) {
       resetSession.addEventListener('click', () => {
         console.log('Attempt to Reset Session\nIsWebChatConnected=' + this.sdwApi.isWebChatConnected())
-        if (this.sdwApi.isWebChatConnected()) {
-          this.sdwApi.resetSession()
-          const iframe = document.getElementById('wbe-sdw-bot');
-          if (iframe && iframe.contentWindow) {
-            console.log("Iframe loaded in service...");
-
-            // Wait for the API to start
-            iframe.contentWindow.SdwApi.then((Api) => {
-              // Initial delay to ensure connection is established
-              setTimeout(() => {
-                // console.log("Connection status:", this.sdwApi.isWebChatConnected());
-              }, 100);
-              if (Api) {
-                this.sdwApi = new Api();
-                // Insert user details
-                this.sdwApi.overrideStartPattern("SE.INIT_WEB",{
-                  "xStcToken": "ss",
-                  "accessToken": "xx"
-                });
-                console.log("Token was updated");
-                console.log("sdwApi.getUserId() Response is: " + this.sdwApi.getUserId());
-              }
-            }).catch((error) => {
-              console.error("Failed to initialize API:", error);
-              this.sdwApi = null;
-            });
+        try {
+          console.log("Attempting to reset session...");
+          console.log("Chat connected:", this.sdwApi?.isWebChatConnected());
+          let cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+            let c = cookies[i].trim();
+            if (c.startsWith('sdw-token=')) {
+              document.cookie = "sdw-token=; Path=/;"
+              break;
+            }
           }
+
+          if (this.sdwApi) {
+            if (this.sdwApi.isChatWindowOpen()) {
+              this.sdwApi.toggleWebChatState();
+            }
+            this.sdwApi.resetSession();
+            console.log("Session reset successful");
+            // this.sdwApi.sendMessage('msg');
+          } else {
+            console.log("Cannot reset - chat not connected or API not initialized");
+          }
+        } catch (error) {
+          console.error("Error in resetSession:", error);
         }
+        // if (this.sdwApi.isWebChatConnected()) {
+        //   this.sdwApi.resetSession()
+        //   const iframe = document.getElementById('wbe-sdw-bot');
+        //   if (iframe && iframe.contentWindow) {
+        //     console.log("Iframe loaded in service...");
+
+        //     // Wait for the API to start
+        //     iframe.contentWindow.SdwApi.then((Api) => {
+        //       // Initial delay to ensure connection is established
+        //       setTimeout(() => {
+        //         // console.log("Connection status:", this.sdwApi.isWebChatConnected());
+        //       }, 100);
+        //       if (Api) {
+        //         this.sdwApi = new Api();
+        //         // Insert user details
+        //         this.sdwApi.overrideStartPattern("SE.INIT_WEB",{
+        //           "xStcToken": "ss",
+        //           "accessToken": "xx"
+        //         });
+        //         console.log("Token was updated");
+        //         console.log("sdwApi.getUserId() Response is: " + this.sdwApi.getUserId());
+        //       }
+        //     }).catch((error) => {
+        //       console.error("Failed to initialize API:", error);
+        //       this.sdwApi = null;
+        //     });
+        //   }
+        // }
       })
     }
     // Toggle for very small screens (<=480px)
