@@ -233,7 +233,7 @@
             this.sdwApi = new Api();
             // Insert user details
             this.sdwApi.overrideStartPattern("SE.INIT_WEB",{
-              "X-STC-API-JWT": "ss",
+              "xStcToken": "ss",
               "accessToken": "xx"
             });
             console.log("Token was updated");
